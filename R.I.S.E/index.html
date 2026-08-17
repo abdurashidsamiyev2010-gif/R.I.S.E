@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>R.I.S.E. Dashboard</title>
+    <style
+/* =========================================
+   R.I.S.E. — MAIN STYLESHEET
+   ========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    background: #f5f5f2;
+    color: #151515;
+    font-family: Inter, Arial, Helvetica, sans-serif;
+    line-height: 1.5;
+}
+
+button,
+input {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+/* LAYOUT */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100vh;
+    padding: 28px 18px;
+    background: #111111;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    z-index: 100;
+}
+
+.main-content {
+    min-height: 100vh;
+    margin-left: 250px;
+    padding: 34px 48px 30px;
+}
+
+/* BRAND */
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 10px 34px;
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+.brand img {
+    width: 34px;
+    height: 34px;
+    object-fit: contain;
+}
+
+/* NAVIGATION */
+.navigation {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.nav-item {
+    min-height: 46px;
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    padding: 0 13px;
+    border-radius: 10px;
+    color: #a5a5a5;
+    font-size: 14px;
+    font-weight: 600;
+    transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.nav-item span:first-child {
+    width: 20px;
+    text-align: center;
+    font-size: 16px;
+}
+
+.nav-item:hover {
+    background: #1e1e1e;
+    color: #ffffff;
+    transform: translateX(2px);
+}
+
+.nav-item.active {
+    background: #ffffff;
+    color: #111111;
+}
+
+.sidebar-bottom {
+    margin-top: auto;
+    padding-top: 20px;
+    border-top: 1px solid #292929;
+}
+
+/* TOPBAR */
+.topbar {
+    min-height: 72px;
+    margin-bottom: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.eyebrow,
+.section-label {
+    color: #888888;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+}
+
+.topbar h1 {
+    margin-top: 5px;
+    font-size: clamp(30px, 4vw, 48px);
+    line-height: 1;
+    letter-spacing: -2px;
+}
+
+.topbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.icon-button,
+.profile-button {
+    border: 1px solid #ddddda;
+    background: #ffffff;
+    color: #222222;
+    border-radius: 10px;
+}
+
+.icon-button {
+    width: 42px;
+    height: 42px;
+}
+
+.profile-button {
+    min-height: 42px;
+    padding: 5px 12px 5px 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.profile-avatar {
+    width: 31px;
+    height: 31px;
+    display: grid;
+    place-items: center;
+    border-radius: 8px;
+    background: #111111;
+    color: #ffffff;
+    font-size: 12px;
+}
+
+/* HERO */
+.hero-section {
+    position: relative;
+    min-height: 320px;
+    margin-bottom: 48px;
+    padding: 48px;
+    overflow: hidden;
+    border-radius: 22px;
+    background: #151515;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 620px;
+}
+
+.hero-section .section-label {
+    color: #a8a8a8;
+}
+
+.hero-section h2 {
+    margin-top: 12px;
+    font-size: clamp(42px, 6vw, 76px);
+    line-height: 0.95;
+    letter-spacing: -4px;
+}
+
+.hero-description {
+    max-width: 520px;
+    margin-top: 22px;
+    color: #bcbcbc;
+    font-size: 15px;
+}
+
+.hero-mark {
+    position: absolute;
+    right: 50px;
+    bottom: 25px;
+    width: 250px;
+    opacity: 0.08;
+    pointer-events: none;
+}
+
+.hero-mark img {
+    width: 100%;
+}
+
+/* BUTTONS */
+.primary-button,
+.secondary-button,
+.danger-button {
+    min-height: 44px;
+    padding: 0 18px;
+    border-radius: 9px;
+    font-size: 13px;
+    font-weight: 800;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.primary-button {
+    margin-top: 26px;
+    border: 0;
+    background: #ffffff;
+    color: #111111;
+}
+
+.primary-button:hover,
+.secondary-button:hover,
+.danger-button:hover {
+    transform: translateY(-2px);
+}
+
+.primary-button:disabled {
+    cursor: not-allowed;
+    opacity: 0.45;
+}
+
+.secondary-button {
+    border: 1px solid #d7d7d2;
+    background: #ffffff;
+    color: #222222;
+}
+
+.danger-button {
+    border: 0;
+    background: #171717;
+    color: #ffffff;
+}
+
+/* SECTIONS */
+.overview-section {
+    margin-bottom: 48px;
+}
+
+.section-heading {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+.section-heading h2 {
+    margin-top: 5px;
+    font-size: 26px;
+    line-height: 1.1;
+    letter-spacing: -1px;
+}
+
+/* STATISTICS */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.stat-card {
+    min-height: 150px;
+    padding: 24px;
+    border: 1px solid #e1e1dc;
+    border-radius: 16px;
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+}
+
+.stat-label {
+    color: #8b8b87;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.4px;
+}
+
+.stat-card strong {
+    margin-top: auto;
+    font-size: 34px;
+    line-height: 1.05;
+    letter-spacing: -1.5px;
+}
+
+.stat-description {
+    margin-top: 8px;
+    color: #858581;
+    font-size: 12px;
+}
+
+/* EXERCISE LIST */
+.exercise-list {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+}
+
+.exercise-card {
+    min-height: 74px;
+    padding: 13px 18px;
+    border: 1px solid #e1e1dc;
+    border-radius: 13px;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.exercise-card:hover {
+    transform: translateX(3px);
+    border-color: #cfcfc9;
+}
+
+.exercise-number {
+    min-width: 42px;
+    color: #9a9a96;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.exercise-info {
+    flex: 1;
+}
+
+.exercise-info h3 {
+    font-size: 15px;
+    font-weight: 800;
+}
+
+.exercise-info p {
+    margin-top: 3px;
+    color: #888884;
+    font-size: 12px;
+}
+
+.exercise-time {
+    color: #555550;
+    font-size: 12px;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+/* WORKOUT & TIMER */
+.workout-hero {
+    min-height: 360px;
+}
+
+.workout-timer-card {
+    min-height: 300px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.workout-timer-card strong {
+    margin-top: 18px;
+    font-size: clamp(64px, 10vw, 110px);
+    letter-spacing: -5px;
+    font-variant-numeric: tabular-nums;
+}
+
+.workout-timer-card .stat-description {
+    margin-top: 10px;
+}
+
+.timer-controls {
+    margin-top: 26px;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+}
+
+.timer-controls .primary-button,
+.timer-controls .secondary-button {
+    margin-top: 0;
+}
+
+.workout-exercise.current {
+    border-color: #111111;
+    background: #eeeeea;
+}
+
+.workout-exercise.completed {
+    opacity: 0.55;
+}
+
+/* RULES */
+.rule-card {
+    min-height: 86px;
+}
+
+.rule-check {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #777773;
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.rule-checkbox {
+    width: 18px;
+    height: 18px;
+    accent-color: #111111;
+    cursor: pointer;
+}
+
+.rule-card.completed {
+    background: #eeeeea;
+}
+
+.rule-card.completed .exercise-info h3 {
+    text-decoration: line-through;
+    text-decoration-thickness: 1px;
+    color: #777773;
+}
+
+/* SETTINGS SWITCH */
+.setting-switch {
+    position: relative;
+    width: 48px;
+    height: 27px;
+    flex-shrink: 0;
+}
+
+.setting-switch input {
+    position: absolute;
+    width: 0;
+    height: 0;
+    opacity: 0;
+}
+
+.setting-switch span {
+    position: absolute;
+    inset: 0;
+    border-radius: 999px;
+    background: #d6d6d1;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.setting-switch span::before {
+    content: "";
+    position: absolute;
+    width: 21px;
+    height: 21px;
+    left: 3px;
+    top: 3px;
+    border-radius: 50%;
+    background: #ffffff;
+    transition: transform 0.2s ease;
+}
+
+.setting-switch input:checked + span {
+    background: #111111;
+}
+
+.setting-switch input:checked + span::before {
+    transform: translateX(21px);
+}
+
+/* SETTINGS ACTIONS */
+.settings-actions {
+    margin-top: 22px;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.settings-actions button {
+    margin-top: 0;
+}
+
+/* FOOTER */
+.footer {
+    padding: 24px 0 5px;
+    border-top: 1px solid #ddddda;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    color: #999995;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+}
+
+/* FOCUS */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+    outline: 2px solid #111111;
+    outline-offset: 3px;
+}
+
+/* =========================================
+   RESPONSIVE STYLES
+   ========================================= */
+
+@media (max-width: 1100px) {
+    :root {
+        --sidebar-width: 220px;
+    }
+
+    .main-content {
+        padding: 32px;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .hero-section {
+        padding: 40px;
+    }
+
+    .hero-mark {
+        right: 30px;
+        width: 240px;
+    }
+}
+
+@media (max-width: 1050px) {
+    .sidebar {
+        width: 210px;
+    }
+
+    .main-content {
+        margin-left: 210px;
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .hero-mark {
+        right: 25px;
+    }
+}
+
+@media (max-width: 850px) {
+    .sidebar {
+        width: 190px;
+    }
+
+    :root {
+        --sidebar-width: 190px;
+    }
+
+    .main-content {
+        padding: 28px 22px;
+    }
+
+    .hero-section {
+        min-height: 320px;
+    }
+
+    .hero-content h2 {
+        font-size: 52px;
+    }
+
+    .hero-mark {
+        width: 200px;
+        right: 20px;
+    }
+
+    .nav-item {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 760px) {
+    .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+        padding: 16px;
+        border-radius: 0;
+    }
+
+    .brand {
+        padding-bottom: 18px;
+    }
+
+    .navigation {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .sidebar-bottom {
+        margin-top: 10px;
+        padding-top: 10px;
+    }
+
+    .main-content {
+        margin-left: 0;
+        padding: 24px 16px;
+    }
+
+    .topbar {
+        align-items: flex-start;
+    }
+
+    .topbar-actions {
+        display: none;
+    }
+
+    .hero-section {
+        min-height: 360px;
+        padding: 30px;
+        align-items: flex-start;
+    }
+
+    .hero-section h2 {
+        letter-spacing: -2.5px;
+    }
+
+    .hero-mark {
+        right: 15px;
+        bottom: 15px;
+        width: 170px;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .exercise-card {
+        gap: 12px;
+        padding: 12px;
+    }
+
+    .exercise-number {
+        min-width: 34px;
+    }
+
+    .exercise-time {
+        font-size: 10px;
+    }
+
+    .footer {
+        flex-direction: column;
+        gap: 8px;
+    }
+}
+
+@media (max-width: 700px) {
+    .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+        padding: 14px 16px;
+        border-right: none;
+        border-bottom: 1px solid var(--border, #ddddda);
+    }
+
+    :root {
+        --sidebar-width: 0px;
+    }
+
+    .brand {
+        padding: 2px 6px 16px;
+    }
+
+    .navigation {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 6px;
+    }
+
+    .nav-item {
+        justify-content: center;
+        min-height: 42px;
+        padding: 7px;
+        font-size: 11px;
+    }
+
+    .nav-item span:first-child {
+        display: none;
+    }
+
+    .sidebar-bottom {
+        margin-top: 6px;
+    }
+
+    .sidebar-bottom .nav-item {
+        justify-content: center;
+    }
+
+    .main-content {
+        margin-left: 0;
+        padding: 22px 16px 30px;
+    }
+
+    .topbar {
+        margin-bottom: 26px;
+    }
+
+    .topbar h1 {
+        font-size: 28px;
+    }
+
+    .topbar-actions {
+        gap: 6px;
+    }
+
+    .profile-button {
+        width: 42px;
+        padding: 4px;
+        justify-content: center;
+    }
+
+    .profile-button span:last-child {
+        display: none;
+    }
+
+    .hero-section {
+        min-height: 420px;
+        padding: 28px 22px;
+        align-items: flex-end;
+    }
+
+    .hero-content {
+        max-width: 100%;
+    }
+
+    .hero-content h2 {
+        font-size: 48px;
+    }
+
+    .hero-description {
+        max-width: 330px;
+        font-size: 14px;
+    }
+
+    .hero-mark {
+        top: 25px;
+        right: 18px;
+        width: 180px;
+        opacity: 0.10;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+
+    .stat-card {
+        min-height: 120px;
+        padding: 16px;
+    }
+
+    .stat-card strong {
+        font-size: 23px;
+    }
+
+    .section-heading h2 {
+        font-size: 20px;
+    }
+
+    .exercise-card {
+        padding: 12px 14px;
+    }
+}
+
+@media (max-width: 460px) {
+    .navigation {
+        grid-template-columns: 1fr;
+    }
+
+    .topbar h1 {
+        font-size: 32px;
+    }
+
+    .hero-section {
+        padding: 24px;
+        border-radius: 16px;
+    }
+
+    .hero-section h2 {
+        font-size: 45px;
+    }
+
+    .hero-description {
+        font-size: 13px;
+    }
+
+    .timer-controls {
+        flex-wrap: wrap;
+    }
+
+    .timer-controls button {
+        flex: 1;
+    }
+}
+
+@media (max-width: 430px) {
+    .navigation {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .hero-section {
+        min-height: 440px;
+    }
+
+    .hero-content h2 {
+        font-size: 42px;
+    }
+
+    .hero-description {
+        font-size: 13px;
+    }
+
+    .hero-mark {
+        width: 160px;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .stat-card {
+        min-height: 105px;
+    }
+
+    .exercise-card {
+        gap: 10px;
+    }
+
+    .exercise-number {
+        width: 25px;
+    }
+
+    .exercise-time {
+        font-size: 11px;
+    }
+
+    .footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        line-height: 1.8;
+    }
+}
+
+@media (max-width: 340px) {
+    .main-content {
+        padding: 18px 12px;
+    }
+
+    .hero-section {
+        padding: 24px 18px;
+    }
+
+    .hero-content h2 {
+        font-size: 36px;
+    }
+
+    .navigation {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+}
+    </style>
+</head>
+<body>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <div class="brand">
+            <span>R.I.S.E.</span>
+        </div>
+        <nav class="navigation">
+            <a href="#" class="nav-item active">
+                <span>⚡</span>
+                <span>Dashboard</span>
+            </a>
+            <a href="#" class="nav-item">
+                <span>🏋️</span>
+                <span>Workouts</span>
+            </a>
+            <a href="#" class="nav-item">
+                <span>📋</span>
+                <span>Rules</span>
+            </a>
+            <a href="#" class="nav-item">
+                <span>📊</span>
+                <span>Stats</span>
+            </a>
+        </nav>
+        <div class="sidebar-bottom">
+            <a href="#" class="nav-item">
+                <span>⚙️</span>
+                <span>Settings</span>
+            </a>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+        <!-- TOPBAR -->
+        <header class="topbar">
+            <div>
+                <span class="eyebrow">Overview</span>
+                <h1>Daily Dashboard</h1>
+            </div>
+            <div class="topbar-actions">
+                <button class="icon-button" aria-label="Notifications">🔔</button>
+                <button class="profile-button">
+                    <div class="profile-avatar">U</div>
+                    <span>User Profile</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- HERO SECTION -->
+        <section class="hero-section">
+            <div class="hero-content">
+                <span class="section-label">Today's Goal</span>
+                <h2>RISE & GRIND</h2>
+                <p class="hero-description">Push past your limits today. Consistent daily effort builds long-term success.</p>
+                <button class="primary-button" id="startBtn">Start Session</button>
+            </div>
+            <div class="hero-mark"></div>
+        </section>
+
+        <!-- TIMER SECTION -->
+        <section class="overview-section">
+            <div class="stat-card workout-timer-card">
+                <span class="stat-label">WORKOUT TIMER</span>
+                <strong id="timerDisplay">00:00</strong>
+                <span class="stat-description" id="timerStatus">Ready to begin</span>
+                <div class="timer-controls">
+                    <button class="primary-button" id="toggleTimerBtn">Start</button>
+                    <button class="secondary-button" id="resetTimerBtn">Reset</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- STATISTICS -->
+        <section class="overview-section">
+            <div class="section-heading">
+                <h2>Performance Stats</h2>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-label">STREAK</span>
+                    <strong>12 Days</strong>
+                    <span class="stat-description">Personal best record</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-label">COMPLETED</span>
+                    <strong id="completedPercent">0%</strong>
+                    <span class="stat-description">Target for today</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-label">TIME ACTIVE</span>
+                    <strong id="timeActiveDisplay">0m</strong>
+                    <span class="stat-description">Today's duration</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-label">SCORE</span>
+                    <strong>1,240</strong>
+                    <span class="stat-description">+120 points today</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- EXERCISE & RULES LIST -->
+        <section class="overview-section">
+            <div class="section-heading">
+                <h2>Today's Plan</h2>
+            </div>
+            <div class="exercise-list">
+                <div class="exercise-card rule-card">
+                    <label class="rule-check">
+                        <input type="checkbox" class="rule-checkbox">
+                    </label>
+                    <span class="exercise-number">01</span>
+                    <div class="exercise-info">
+                        <h3>Push-ups Workout</h3>
+                        <p>Upper body baseline training</p>
+                    </div>
+                    <span class="exercise-time">15 mins</span>
+                </div>
+                <div class="exercise-card rule-card">
+                    <label class="rule-check">
+                        <input type="checkbox" class="rule-checkbox">
+                    </label>
+                    <span class="exercise-number">02</span>
+                    <div class="exercise-info">
+                        <h3>Core & Stability</h3>
+                        <p>Plank holds & leg raises</p>
+                    </div>
+                    <span class="exercise-time">20 mins</span>
+                </div>
+                <div class="exercise-card rule-card">
+                    <label class="rule-check">
+                        <input type="checkbox" class="rule-checkbox">
+                    </label>
+                    <span class="exercise-number">03</span>
+                    <div class="exercise-info">
+                        <h3>Cool-down Stretch</h3>
+                        <p>Flexibility and recovery</p>
+                    </div>
+                    <span class="exercise-time">10 mins</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="footer">
+            <span>R.I.S.E. SYSTEM &copy; 2026</span>
+            <span>ALL RIGHTS RESERVED</span>
+        </footer>
+    </main>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Navigation Switch ---
+            const navItems = document.querySelectorAll('.nav-item');
+            navItems.forEach(item => {
+                item.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    navItems.forEach(nav => nav.classList.remove('active'));
+                    item.classList.add('active');
+                });
+            });
+
+            // --- Timer Logic ---
+            let timerInterval = null;
+            let secondsElapsed = 0;
+            let isRunning = false;
+
+            const timerDisplay = document.getElementById('timerDisplay');
+            const timerStatus = document.getElementById('timerStatus');
+            const toggleBtn = document.getElementById('toggleTimerBtn');
+            const resetBtn = document.getElementById('resetTimerBtn');
+            const startSessionBtn = document.getElementById('startBtn');
+            const timeActiveDisplay = document.getElementById('timeActiveDisplay');
+
+            function formatTime(sec) {
+                const mins = Math.floor(sec / 60);
+                const secs = sec % 60;
+                return `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+            }
+
+            function updateTimer() {
+                secondsElapsed++;
+                timerDisplay.textContent = formatTime(secondsElapsed);
+                timeActiveDisplay.textContent = `${Math.floor(secondsElapsed / 60)}m`;
+            }
+
+            function startTimer() {
+                if (!isRunning) {
+                    isRunning = true;
+                    timerInterval = setInterval(updateTimer, 1000);
+                    toggleBtn.textContent = 'Pause';
+                    timerStatus.textContent = 'Workout in progress...';
+                }
+            }
+
+            function pauseTimer() {
+                if (isRunning) {
+                    isRunning = false;
+                    clearInterval(timerInterval);
+                    toggleBtn.textContent = 'Resume';
+                    timerStatus.textContent = 'Workout paused';
+                }
+            }
+
+            toggleBtn.addEventListener('click', () => {
+                if (isRunning) {
+                    pauseTimer();
+                } else {
+                    startTimer();
+                }
+            });
+
+            resetBtn.addEventListener('click', () => {
+                pauseTimer();
+                secondsElapsed = 0;
+                timerDisplay.textContent = '00:00';
+                toggleBtn.textContent = 'Start';
+                timerStatus.textContent = 'Ready to begin';
+                timeActiveDisplay.textContent = '0m';
+            });
+
+            startSessionBtn.addEventListener('click', () => {
+                startTimer();
+                window.scrollTo({
+                    top: timerDisplay.offsetTop - 100,
+                    behavior: 'smooth'
+                });
+            });
+
+            // --- Checkbox & Progress Logic ---
+            const checkboxes = document.querySelectorAll('.rule-checkbox');
+            const completedPercent = document.getElementById('completedPercent');
+
+            function updateProgress() {
+                const total = checkboxes.length;
+                let checkedCount = 0;
+
+                checkboxes.forEach(box => {
+                    const card = box.closest('.rule-card');
+                    if (box.checked) {
+                        checkedCount++;
+                        card.classList.add('completed');
+                    } else {
+                        card.classList.remove('completed');
+                    }
+                });
+
+                const percentage = total > 0 ? Math.round((checkedCount / total) * 100) : 0;
+                completedPercent.textContent = `${percentage}%`;
+            }
+
+            checkboxes.forEach(box => {
+                box.addEventListener('change', updateProgress);
+            });
+        });
+    </script>
+</body>
+</html>
