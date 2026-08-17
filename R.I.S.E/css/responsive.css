@@ -1,0 +1,286 @@
+/* =========================================
+   R.I.S.E. — RESPONSIVE SYSTEM
+   ========================================= */
+
+/* ---------- LARGE TABLET ---------- */
+
+@media (max-width: 1100px) {
+
+    :root {
+        --sidebar-width: 220px;
+    }
+
+    .main-content {
+        padding: 32px;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .hero-section {
+        padding: 40px;
+    }
+
+    .hero-mark {
+        right: 30px;
+        width: 240px;
+    }
+}
+
+
+/* ---------- TABLET ---------- */
+
+@media (max-width: 850px) {
+
+    .sidebar {
+        width: 190px;
+    }
+
+    :root {
+        --sidebar-width: 190px;
+    }
+
+    .main-content {
+        padding: 28px 22px;
+    }
+
+    .hero-section {
+        min-height: 320px;
+    }
+
+    .hero-content h2 {
+        font-size: 52px;
+    }
+
+    .hero-mark {
+        width: 200px;
+        right: 20px;
+    }
+
+    .nav-item {
+        font-size: 13px;
+    }
+}
+
+
+/* ---------- MOBILE ---------- */
+
+@media (max-width: 700px) {
+
+    .sidebar {
+        position: relative;
+
+        width: 100%;
+        height: auto;
+
+        padding: 14px 16px;
+
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+    }
+
+    :root {
+        --sidebar-width: 0px;
+    }
+
+    .brand {
+        padding: 2px 6px 16px;
+    }
+
+    .navigation {
+        display: grid;
+
+        grid-template-columns: repeat(3, 1fr);
+
+        gap: 6px;
+    }
+
+    .nav-item {
+        justify-content: center;
+
+        min-height: 42px;
+
+        padding: 7px;
+
+        font-size: 11px;
+    }
+
+    .nav-item span:first-child {
+        display: none;
+    }
+
+    .sidebar-bottom {
+        margin-top: 6px;
+    }
+
+    .sidebar-bottom .nav-item {
+        justify-content: center;
+    }
+
+    .main-content {
+        margin-left: 0;
+
+        padding: 22px 16px 30px;
+    }
+
+    .topbar {
+        margin-bottom: 26px;
+    }
+
+    .topbar h1 {
+        font-size: 28px;
+    }
+
+    .topbar-actions {
+        gap: 6px;
+    }
+
+    .profile-button {
+        width: 42px;
+        padding: 4px;
+
+        justify-content: center;
+    }
+
+    .profile-button span:last-child {
+        display: none;
+    }
+
+    .hero-section {
+        min-height: 420px;
+
+        padding: 28px 22px;
+
+        align-items: flex-end;
+    }
+
+    .hero-content {
+        max-width: 100%;
+    }
+
+    .hero-content h2 {
+        font-size: 48px;
+    }
+
+    .hero-description {
+        max-width: 330px;
+
+        font-size: 14px;
+    }
+
+    .hero-mark {
+        top: 25px;
+        right: 18px;
+
+        width: 180px;
+
+        opacity: 0.10;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+
+        gap: 8px;
+    }
+
+    .stat-card {
+        min-height: 120px;
+
+        padding: 16px;
+    }
+
+    .stat-card strong {
+        font-size: 23px;
+    }
+
+    .section-heading h2 {
+        font-size: 20px;
+    }
+
+    .exercise-card {
+        padding: 12px 14px;
+    }
+}
+
+
+/* ---------- SMALL MOBILE ---------- */
+
+@media (max-width: 430px) {
+
+    .navigation {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .hero-section {
+        min-height: 440px;
+    }
+
+    .hero-content h2 {
+        font-size: 42px;
+    }
+
+    .hero-description {
+        font-size: 13px;
+    }
+
+    .hero-mark {
+        width: 160px;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .stat-card {
+        min-height: 105px;
+    }
+
+    .exercise-card {
+        gap: 10px;
+    }
+
+    .exercise-number {
+        width: 25px;
+    }
+
+    .exercise-time {
+        font-size: 11px;
+    }
+
+    .footer {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 8px;
+
+        line-height: 1.8;
+    }
+}
+
+
+/* ---------- VERY SMALL SCREENS ---------- */
+
+@media (max-width: 340px) {
+
+    .main-content {
+        padding: 18px 12px;
+    }
+
+    .hero-section {
+        padding: 24px 18px;
+    }
+
+    .hero-content h2 {
+        font-size: 36px;
+    }
+
+    .navigation {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+}
